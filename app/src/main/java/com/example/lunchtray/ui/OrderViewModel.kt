@@ -66,12 +66,13 @@ class OrderViewModel : ViewModel() {
                 orderTotalPrice = itemTotalPrice + tax,
                 entree = if (newItem is EntreeItem) newItem else currentState.entree,
                 sideDish = if (newItem is SideDishItem) newItem else currentState.sideDish,
-                accompaniment = if(newItem is AccompanimentItem) newItem else
-                    currentState.accompaniment
+                accompaniment =
+                    if (newItem is AccompanimentItem) newItem else currentState.accompaniment
             )
         }
     }
 }
+
 fun Double.formatPrice(): String {
     return NumberFormat.getCurrencyInstance().format(this)
 }
