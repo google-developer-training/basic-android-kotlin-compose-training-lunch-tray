@@ -15,6 +15,7 @@
  */
 package com.example.lunchtray
 
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,6 +27,7 @@ import com.example.lunchtray.ui.OrderViewModel
 
 // TODO: AppBar
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LunchTrayApp() {
     // TODO: Create Controller and initialization
