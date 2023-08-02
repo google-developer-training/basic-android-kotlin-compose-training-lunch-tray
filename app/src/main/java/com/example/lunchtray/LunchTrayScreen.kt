@@ -23,6 +23,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -57,6 +58,7 @@ enum class LunchTrayScreen(@StringRes val title: Int) {
 /**
  * Composable that displays the topBar and displays back button if back navigation is possible.
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LunchTrayAppBar(
     @StringRes currentScreenTitle: Int,
@@ -107,7 +109,6 @@ fun LunchTrayApp() {
         NavHost(
             navController = navController,
             startDestination = LunchTrayScreen.Start.name,
-            modifier = Modifier.padding(innerPadding),
         ) {
             composable(route = LunchTrayScreen.Start.name) {
                 StartOrderScreen(
@@ -115,8 +116,8 @@ fun LunchTrayApp() {
                         navController.navigate(LunchTrayScreen.Entree.name)
                     },
                     modifier = Modifier
-                        .padding(dimensionResource(R.dimen.padding_medium))
                         .fillMaxSize()
+                        .padding(innerPadding)
                 )
             }
 
@@ -134,8 +135,8 @@ fun LunchTrayApp() {
                         viewModel.updateEntree(item)
                     },
                     modifier = Modifier
-                        .padding(dimensionResource(R.dimen.padding_medium))
                         .verticalScroll(rememberScrollState())
+                        .padding(innerPadding)
                 )
             }
 
@@ -153,8 +154,8 @@ fun LunchTrayApp() {
                         viewModel.updateSideDish(item)
                     },
                     modifier = Modifier
-                        .padding(dimensionResource(R.dimen.padding_medium))
                         .verticalScroll(rememberScrollState())
+                        .padding(innerPadding)
                 )
             }
 
@@ -172,8 +173,8 @@ fun LunchTrayApp() {
                         viewModel.updateAccompaniment(item)
                     },
                     modifier = Modifier
-                        .padding(dimensionResource(R.dimen.padding_medium))
                         .verticalScroll(rememberScrollState())
+                        .padding(innerPadding)
                 )
             }
 
@@ -189,8 +190,13 @@ fun LunchTrayApp() {
                         navController.popBackStack(LunchTrayScreen.Start.name, inclusive = false)
                     },
                     modifier = Modifier
-                        .padding(dimensionResource(R.dimen.padding_medium))
                         .verticalScroll(rememberScrollState())
+                        .padding(
+                            top = innerPadding.calculateTopPadding(),
+                            bottom = innerPadding.calculateBottomPadding(),
+                            start = dimensionResource(R.dimen.padding_medium),
+                            end = dimensionResource(R.dimen.padding_medium),
+                        )
                 )
             }
         }
