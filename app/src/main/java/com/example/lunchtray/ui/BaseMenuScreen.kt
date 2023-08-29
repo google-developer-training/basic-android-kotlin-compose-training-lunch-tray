@@ -64,6 +64,10 @@ fun BaseMenuScreen(
                     selected = selectedItemName == item.name,
                     onClick = onClick
                 )
+                    .padding(
+                        start = dimensionResource(R.dimen.padding_medium),
+                        end = dimensionResource(R.dimen.padding_medium),
+                    )
             )
         }
 
